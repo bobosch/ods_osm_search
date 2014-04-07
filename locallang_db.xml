@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'ods_osm_search'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.list_type_pi1">Openstreetmap search</label>
+			<label index="tt_content.tx_odsosmsearch_cid">Show search result on map</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tt_content.list_type_pi1">Openstreetmap Suche</label>
+			<label index="tt_content.tx_odsosmsearch_cid">Suchergebnis auf Karte zeigen</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,29 @@
+2013-06-09 Robert Heel <typo3@bobosch.de>
+	* Bugfix: Don't cache page when searching.
+
+2013-06-05 Robert Heel <typo3@bobosch.de>
+	* Change: Move form tag into html template.
+	* Add: TS option "pid" to configure page id.
+
+2013-06-03 Robert Heel <typo3@bobosch.de>
+	* Change: Search in all tt_address records if no Record Storage Page is set.
+	* Bugfix: Show also addresses with the same coordinates as the searched address.
+
+2010-09-18 Robert Heel <rheel@1drop.de>
+	* Add: TS option "standard_on_none_found"
+	* Add: TS option "limit" to limit search results.
+	* Add: TS option "unit" to configure unit.
+	* Add: TS option "radius" to configure search radius.
+	* Add: TS option "auto_zoom" to configure automatic zoom.
+	* Add: TS option "fuzzy_loops" to enable automatic radius enlarge.
+
+2010-06-03 Robert Heel <rheel@1drop.de>
+	* Change: Use address cache of ods_osm.
+	* Change: Configure corresponding map in plugin configuration. 
+
+2010-05-18 Robert Heel <rheel@1drop.de>
+	* Add: Extension icon.
+	* Bugfix: Show dropdown only on list types.
+
+2010-05-14 Robert Heel <rheel@1drop.de>
+	* initial code generated with kickstarter

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_odsosmsearch_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="search">Search</label>
+			<label index="label_zip">ZIP:</label>
+			<label index="label_radius">Radius:</label>
+			<label index="label_limit">Result limit</label>
+			<label index="result_info">Found %s address(es).</label>
+			<label index="result_info_empty">No addresses found.</label>
+			<label index="result_info_fuzzy">No addresses found that match the search criteria exactly.
+There are %s address(es) alternatively within a radius of %s km found.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="search">Suchen</label>
+			<label index="label_zip">PLZ:</label>
+			<label index="label_radius">Radius:</label>
+			<label index="label_limit">Treffer anzeigen</label>
+			<label index="result_info">%s Adresse(n) gefunden.</label>
+			<label index="result_info_empty">Keine Adressen gefunden.</label>
+			<label index="result_info_fuzzy">Es wurden keine Adressen gefunden, die den Suchkriterien exakt entsprechen.
+Alternativ %s Adresse(n) im Umkreis von %s km gefunden.</label>
+		</languageKey>
+	</data>
+</T3locallang>

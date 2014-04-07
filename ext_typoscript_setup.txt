@@ -1,0 +1,33 @@
+plugin.tx_odsosmsearch_pi1 {
+	distance.round = 2
+	list.tt_address {
+		distance = TEXT
+		distance.field = distance
+
+		first_name = TEXT
+		first_name.field = first_name
+
+		image = IMAGE
+		image.file.import = uploads/pics/
+		image.file.import.field = image
+
+		last_name = TEXT
+		last_name.field = last_name
+	}
+	pid = 0
+	template = EXT:ods_osm_search/pi1/ods_osm_search.html
+
+	standard_on_none_found = 1
+	limit = 5
+	unit = km
+	radius = 25
+	radius {
+		select = 10,25,50,100
+		auto_zoom = 13,10,9,8
+		fuzzy_loops = 2
+	}
+
+	_CSS_DEFAULT_STYLE (
+		.osm_search_input div {display:inline; margin: 0 0.8em;}
+	)
+}
