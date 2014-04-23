@@ -1,4 +1,5 @@
 plugin.tx_odsosmsearch_pi1 {
+	country =
 	distance.round = 2
 	list.tt_address {
 		distance = TEXT

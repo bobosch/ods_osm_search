@@ -7,8 +7,9 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="search">Search</label>
-			<label index="label_zip">ZIP:</label>
-			<label index="label_radius">Radius:</label>
+			<label index="country">Country</label>
+			<label index="label_zip">ZIP</label>
+			<label index="label_radius">Radius</label>
 			<label index="label_limit">Result limit</label>
 			<label index="result_info">Found %s address(es).</label>
 			<label index="result_info_empty">No addresses found.</label>
@@ -17,8 +18,9 @@ There are %s address(es) alternatively within a radius of %s km found.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="search">Suchen</label>
-			<label index="label_zip">PLZ:</label>
-			<label index="label_radius">Radius:</label>
+			<label index="country">Land</label>
+			<label index="label_zip">PLZ</label>
+			<label index="label_radius">Radius</label>
 			<label index="label_limit">Treffer anzeigen</label>
 			<label index="result_info">%s Adresse(n) gefunden.</label>
 			<label index="result_info_empty">Keine Adressen gefunden.</label>

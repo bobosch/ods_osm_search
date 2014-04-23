@@ -81,8 +81,8 @@ class tx_odsosmsearch_div {
 		if($radius<=0 or $radius>$earth_radius) $radius=$GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_odsosmsearch_pi1.']['radius'];
 
 		$address['zip']=trim($input['zip']);
+		if($input['country']) $address['country']=$input['country'];
 		$ll=tx_odsosm_div::updateAddress($address);
-
 		if($ll){
 			// Umrechnung von GRAD IN RAD
 			$lon=$address['lon'] / 180 * M_PI;
