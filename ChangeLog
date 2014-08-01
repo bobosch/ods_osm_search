@@ -1,3 +1,6 @@
+2014-08-01 Robert Heel <typo3@bobosch.de>
+	* Bugfix: Compatibility to TYPO3 6.2.
+
 2014-04-13 Robert Heel <typo3@bobosch.de>
 	* Change: TS option "country" to add a country selection dropdown (also uncomment select field in template).
 	* Change: Use static_info_tables for distance number format.
