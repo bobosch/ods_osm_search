@@ -27,18 +27,18 @@
  * Hint: use extdeveval to insert/update function index above.
  */
 
-require_once(t3lib_extMgm::extPath('ods_osm_search').'class.tx_odsosmsearch_div.php');
-require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ods_osm_search').'class.tx_odsosmsearch_div.php');
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
 
 
 /**
  * Plugin 'Openstreetmap search' for the 'ods_osm_search' extension.
  *
- * @author	Robert Heel <rheel@1drop.de>
+ * @author	Robert Heel <typo3@bobosch.de>
  * @package	TYPO3
  * @subpackage	tx_odsosmsearch
  */
-class tx_odsosmsearch_pi1 extends tslib_pibase {
+class tx_odsosmsearch_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	public $prefixId      = 'tx_odsosmsearch_pi1';		// Same as class name
 	public $scriptRelPath = 'pi1/class.tx_odsosmsearch_pi1.php';	// Path to this script relative to the extension dir.
 	public $extKey        = 'ods_osm_search';	// The extension key.
@@ -51,8 +51,7 @@ class tx_odsosmsearch_pi1 extends tslib_pibase {
 		$this->pi_loadLL();
 		$this->pi_USER_INT_obj = 1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
 
-		$this->staticInfo = &t3lib_div::getUserObj('&tx_staticinfotables_pi1');
-// 		$this->staticInfo = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SJBR\\StaticInfoTables\\PiBaseApi');
+		$this->staticInfo = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SJBR\\StaticInfoTables\\PiBaseApi');
 		if ($this->staticInfo->needsInit()) {
 			$this->staticInfo->init();
 		}
@@ -93,7 +92,7 @@ class tx_odsosmsearch_pi1 extends tslib_pibase {
 
 		$conf_radius_select = $this->conf['radius.']['select'];
 		if (!empty($conf_radius_select)) {
-			$radius_array = array_flip(t3lib_div::intExplode(',', $conf_radius_select, true));
+			$radius_array = array_flip(\TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $conf_radius_select, true));
 		}
 		$radius_array[$conf_radius_value] = 1;
 		$radius_array[$radius_value] = 1;
@@ -138,7 +137,7 @@ class tx_odsosmsearch_pi1 extends tslib_pibase {
 			$addresses=tx_odsosmsearch_div::getRecords($this->piVars,$this->cObj->data['pages'],$this);
 			$template['list']=$this->cObj->getSubpart($this->template['total'],'###LIST###');
 			$template['list_item']=$this->cObj->getSubpart($template['list'],'###LIST_ITEM###');
-			$local_cObj=t3lib_div::makeInstance('tslib_cObj');
+			$local_cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 			$subpart['###LIST_ITEM###']='';
 			if(is_array($addresses)){
 				foreach($addresses as $address){

@@ -1,5 +1,5 @@
 <?php
-require_once(t3lib_extMgm::extPath('ods_osm_search').'class.tx_odsosmsearch_div.php');
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ods_osm_search').'class.tx_odsosmsearch_div.php');
 
 class tx_odsosmsearch_odsosm {
 	function changeRecords(&$records,$record_ids,$obj){

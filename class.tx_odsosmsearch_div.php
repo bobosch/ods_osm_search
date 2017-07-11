@@ -1,8 +1,8 @@
 <?php
-require_once(t3lib_extMgm::extPath('ods_osm').'class.tx_odsosm_div.php');
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ods_osm').'class.tx_odsosm_div.php');
 
 class tx_odsosmsearch_div {
-	function getRecords($input,$pid,$obj){
+	static function getRecords($input,$pid,$obj){
 		if($GLOBALS['ods_osm_search']) return $GLOBALS['ods_osm_search'];
 
 		if ($input['radius']) {
@@ -12,21 +12,22 @@ class tx_odsosmsearch_div {
 		$conf_radius_value = intval($GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_odsosmsearch_pi1.']['radius']);
 		$conf_radius_select = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_odsosmsearch_pi1.']['radius.']['select'];
 		if (!empty($conf_radius_select)) {
-			$radius_array = array_flip(t3lib_div::intExplode(',', $conf_radius_select, true));
+			$radius_array = array_flip(\TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $conf_radius_select, true));
 		}
 		$radius_array[$conf_radius_value] = 1;
 		$radius_array[$radius] = 1;
 		ksort($radius_array);
 		$radius_array = array_keys($radius_array);
 
+		$tc = tx_odsosm_div::getTableConfig('tt_address');
 		$addresses = array();
 		$k = array_search($radius, $radius_array);
 		while ($radius_array[$k++]) {
-			$sql=tx_odsosmsearch_div::getSql($input);
+			$sql=tx_odsosmsearch_div::getSql($input,$tc);
 			if($sql){
 				$sql['SELECT'][]='tt_address.*';
 				$sql['FROM'][]='tt_address';
-				$sql['WHERE'][]='tx_odsosm_lon != 0'; // Use only addresses with coordinates
+				$sql['WHERE'][] = $tc['lon'] . ' != 0'; // Use only addresses with coordinates
 				if($pid) $sql['WHERE'][]='pid IN ('.$pid.')';
 				$addresses=$GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 					implode(',',$sql['SELECT']),
@@ -46,7 +47,7 @@ class tx_odsosmsearch_div {
 
 		$auto_zoom = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_odsosmsearch_pi1.']['radius.']['auto_zoom'];
 		if (!empty($addresses) && $auto_zoom && !empty($radius_array)) {
-			$zoom_array = t3lib_div::intExplode(',', $auto_zoom, true);
+			$zoom_array = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $auto_zoom, true);
 			$r_count = count($radius_array);
 			$z_count = count($zoom_array);
 			$size = ($r_count > $z_count) ? $z_count : $r_count;
@@ -65,7 +66,7 @@ class tx_odsosmsearch_div {
 		return $addresses;
 	}
 
-	function getSql($input){
+	static function getSql($input,$tc){
 		// Erdradius (geozentrischer Mittelwert) in km
 		$earth_radius=6368;
 
@@ -90,10 +91,10 @@ class tx_odsosmsearch_div {
 
 			$sql=array(
 				'SELECT'=>array(
-'('.$earth_radius.' * SQRT(2*(1-cos(RADIANS(tx_odsosm_lat)) * 
-cos('.$lat.') * (sin(RADIANS(tx_odsosm_lon)) *
-sin('.$lon.') + cos(RADIANS(tx_odsosm_lon)) * 
-cos('.$lon.')) - sin(RADIANS(tx_odsosm_lat)) *
+'(' . $earth_radius . ' * SQRT(2*(1-cos(RADIANS(' . $tc['lat'] . ')) * 
+cos('.$lat.') * (sin(RADIANS(' . $tc['lon'] . ')) *
+sin('.$lon.') + cos(RADIANS(' . $tc['lon'] . ')) * 
+cos('.$lon.')) - sin(RADIANS(' . $tc['lat'] . ')) *
 sin('.$lat.')))) AS distance'
 				),
 				'HAVING'=>array(
@@ -107,8 +108,8 @@ sin('.$lat.')))) AS distance'
 			// Hook to change sql
 			if(is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ods_osm_search']['class.tx_odsosmsearch_div.php'])){
 				foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ods_osm_search']['class.tx_odsosmsearch_div.php'] as $classRef){
-					$hook=&t3lib_div::getUserObj($classRef);
-					$hook->changeSql($sql,$input,$this);
+					$hook=&\TYPO3\CMS\Core\Utility\GeneralUtility::getUserObj($classRef);
+					$hook->changeSql($sql,$input);
 				}
 			}
 			
